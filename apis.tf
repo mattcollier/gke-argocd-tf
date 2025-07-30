@@ -7,3 +7,8 @@ resource "google_project_service" "services" {
   service            = each.key
   disable_on_destroy = false
 }
+
+resource "time_sleep" "wait_for_apis" {
+  create_duration = "30s"
+  depends_on      = [google_project_service.services]
+}

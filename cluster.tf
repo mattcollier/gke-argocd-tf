@@ -64,7 +64,7 @@ resource "google_container_cluster" "default" {
   deletion_protection = false
 
   # defined in apis.tf
-  depends_on = [google_project_service.services]
+  depends_on = [time_sleep.wait_for_apis]
 }
 # [END gke_quickstart_autopilot_cluster]
 
