@@ -20,6 +20,9 @@ resource "google_compute_network" "default" {
 
   auto_create_subnetworks  = false
   enable_ula_internal_ipv6 = true
+
+  # defined in apis.tf
+  depends_on = [time_sleep.wait_for_apis]
 }
 
 resource "google_compute_subnetwork" "default" {
@@ -62,9 +65,6 @@ resource "google_container_cluster" "default" {
   # Set `deletion_protection` to `true` will ensure that one cannot
   # accidentally delete this instance by use of Terraform.
   deletion_protection = false
-
-  # defined in apis.tf
-  depends_on = [time_sleep.wait_for_apis]
 }
 # [END gke_quickstart_autopilot_cluster]
 
